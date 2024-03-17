@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import {SettingsIcon} from "lucide-react";
-import {useEffect, useRef, useState} from "react";
-import Recorder, {mimeType} from "@/components/Recorder";
 import transcript from "@/actions/transcript";
 import { useFormState } from "react-dom";
-import Messages from "@/components/Messages";
+import { useEffect, useRef, useState } from "react";
+import Recorder from "@/components/Recorder";
 import VoiceSynthesizer from "@/components/VoiceSynthesizer";
+import Messages from "@/components/Messages";
+import { SettingsIcon } from "lucide-react";
+import Image from "next/image";
 
 const initialState = {
   sender: "",
@@ -28,6 +28,7 @@ export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [displaySettings, setDisplaySettings] = useState(false);
 
+  // Responsible for updating the messages when the Server Action completes
   useEffect(() => {
     if (state.response && state.sender) {
       setMessages((messages) => [
@@ -47,10 +48,10 @@ export default function Home() {
     audio.src = url;
     audio.controls = true;
 
-    // Creating a File object from the Blob
-    const file = new File([blob], "audio.webm", { type: mimeType });
+    // Create a File object from the Blob
+    const file = new File([blob], "audio.webm", { type: blob.type });
 
-    // Setting the file as the value of the file input element
+    // Set the file as the value of the file input element
     if (fileRef.current) {
       // Create a DataTransfer object to simulate a file input event
       const dataTransfer = new DataTransfer();
@@ -62,17 +63,19 @@ export default function Home() {
         submitButtonRef.current.click();
       }
     }
-  }
+  };
+
+  console.log(messages);
 
   return (
     <main className="bg-black h-screen overflow-y-scroll">
       <header className="flex fixed top-0 justify-between text-white w-full p-5">
         <Image
-          src="https://avatars.githubusercontent.com/u/38469892?v=4"
+          src="https://i.imgur.com/MCHWJZS.png
+          "
           alt="Logo"
           width={50}
           height={50}
-          className={'rounded-full object-cover bg-white'}
         />
 
         <SettingsIcon
