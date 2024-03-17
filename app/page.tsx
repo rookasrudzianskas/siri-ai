@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import {SettingsIcon} from "lucide-react";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Recorder, {mimeType} from "@/components/Recorder";
+import transcript from "@/actions/transcript";
+import { useFormState } from "react-dom";
 
 const initialState = {
   sender: "",
@@ -18,11 +20,24 @@ export type Message = {
 };
 
 export default function Home() {
-  // const [state, formAction] = useFormState(transcript, initialState);
+  const [state, formAction] = useFormState(transcript, initialState);
   const fileRef = useRef<HTMLInputElement | null>(null);
   const submitButtonRef = useRef<HTMLButtonElement | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [displaySettings, setDisplaySettings] = useState(false);
+
+  useEffect(() => {
+    if (state.response && state.sender) {
+      setMessages((messages) => [
+        {
+          sender: state.sender || "",
+          response: state.response || "",
+          id: state.id || "",
+        },
+        ...messages,
+      ]);
+    }
+  }, [state]);
 
   const uploadAudio = (blob: Blob) => {
     const url = URL.createObjectURL(blob);

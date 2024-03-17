@@ -10,8 +10,7 @@ export const mimeType = "audio/webm";
 
 const Recorder = ({ uploadAudio }: { uploadAudio: (blob: Blob) => void }) => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
-  // const { pending } = useFormStatus();
-  const pending = false;
+  const { pending } = useFormStatus();
   const [permission, setPermission] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [recordingStatus, setRecordingStatus] = useState("inactive");
