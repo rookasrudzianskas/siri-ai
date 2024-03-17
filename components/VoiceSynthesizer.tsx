@@ -22,12 +22,13 @@ function VoiceSynthesizer({
 
   useEffect(() => {
     setSynth(window.speechSynthesis);
-  }, []);
+  }, [window]);
 
   useEffect(() => {
     if (!state.response || !synth) return;
 
     const wordsToSay = new SpeechSynthesisUtterance(state.response);
+
     wordsToSay.voice = voice;
     wordsToSay.pitch = pitch;
     wordsToSay.rate = rate;
