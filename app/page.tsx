@@ -6,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import Recorder, {mimeType} from "@/components/Recorder";
 import transcript from "@/actions/transcript";
 import { useFormState } from "react-dom";
+import Messages from "@/components/Messages";
 
 const initialState = {
   sender: "",
@@ -82,7 +83,7 @@ export default function Home() {
 
       <form className="flex flex-col bg-black">
         <div className="flex-1 bg-gradient-to-b from-purple-500 to-black">
-          {/*<Messages messages={messages} />*/}
+          <Messages messages={messages} />
         </div>
 
         <input type="file" name="audio" ref={fileRef} hidden />
