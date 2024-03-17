@@ -7,6 +7,7 @@ import Recorder, {mimeType} from "@/components/Recorder";
 import transcript from "@/actions/transcript";
 import { useFormState } from "react-dom";
 import Messages from "@/components/Messages";
+import VoiceSynthesizer from "@/components/VoiceSynthesizer";
 
 const initialState = {
   sender: "",
@@ -81,7 +82,7 @@ export default function Home() {
         />
       </header>
 
-      <form className="flex flex-col bg-black">
+      <form action={formAction} className="flex flex-col bg-black">
         <div className="flex-1 bg-gradient-to-b from-purple-500 to-black">
           <Messages messages={messages} />
         </div>
@@ -92,7 +93,7 @@ export default function Home() {
         <div className="fixed bottom-0 w-full overflow-hidden bg-black rounded-t-3xl">
           <Recorder uploadAudio={uploadAudio} />
           <div className="">
-            {/*<VoiceSynthesizer state={state} displaySettings={displaySettings} />*/}
+            <VoiceSynthesizer state={state} displaySettings={displaySettings} />
           </div>
         </div>
       </form>
