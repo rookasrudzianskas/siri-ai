@@ -8,7 +8,7 @@ import { useFormStatus } from "react-dom";
 
 const mimeType = "audio/webm";
 
-const Recorder = ({}) => {
+const Recorder = ({ uploadAudio }: { uploadAudio: (blob: Blob) => void }) => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   // const { pending } = useFormStatus();
   const pending = false;
