@@ -24,7 +24,27 @@ function VoiceSynthesizer({
     setSynth(window.speechSynthesis);
   }, [window]);
 
+  useEffect(() => {
+    if (!state.response || !synth) return;
 
+    const wordsToSay = new SpeechSynthesisUtterance(state.response);
+
+    wordsToSay.voice = voice;
+    wordsToSay.pitch = pitch;
+    wordsToSay.rate = rate;
+    wordsToSay.volume = volume;
+
+    synth.speak(wordsToSay);
+
+    return () => {
+      synth.cancel();
+    };
+  }, [state]);
+
+  useEffect(() => {
+    const voices = window.speechSynthesis.getVoices();
+    setVoice(voices[0]);
+  }, [window]);
 
   const handleVoiceChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const voices = window.speechSynthesis.getVoices();
