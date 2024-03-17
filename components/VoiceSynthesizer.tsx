@@ -22,7 +22,7 @@ function VoiceSynthesizer({
 
   useEffect(() => {
     setSynth(window.speechSynthesis);
-  }, [window]);
+  }, []);
 
   useEffect(() => {
     if (!state.response || !synth) return;
