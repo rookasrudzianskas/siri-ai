@@ -6,7 +6,7 @@ import activeAssistantIcon from "@/img/active.gif";
 import notActiveAssistantIcon from "@/img/notactive.png";
 import { useFormStatus } from "react-dom";
 
-const mimeType = "audio/webm";
+export const mimeType = "audio/webm";
 
 const Recorder = ({ uploadAudio }: { uploadAudio: (blob: Blob) => void }) => {
   const mediaRecorder = useRef<MediaRecorder | null>(null);

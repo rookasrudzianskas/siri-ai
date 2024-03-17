@@ -3,7 +3,7 @@
 import Image from "next/image";
 import {SettingsIcon} from "lucide-react";
 import {useRef, useState} from "react";
-import Recorder from "@/components/Recorder";
+import Recorder, {mimeType} from "@/components/Recorder";
 
 const initialState = {
   sender: "",
@@ -31,7 +31,7 @@ export default function Home() {
     audio.controls = true;
 
     // Creating a File object from the Blob
-    const file = new File([blob], "audio.webm", { type: blob.type });
+    const file = new File([blob], "audio.webm", { type: mimeType });
 
     // Setting the file as the value of the file input element
     if (fileRef.current) {
