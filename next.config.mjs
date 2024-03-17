@@ -6,6 +6,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.imgur.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      }
     ],
   },
 };
