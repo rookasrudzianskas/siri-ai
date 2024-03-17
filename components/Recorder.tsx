@@ -45,11 +45,8 @@ const Recorder = ({}) => {
     if (pending) return;
 
     setRecordingStatus("recording");
-    //create new Media recorder instance using the stream
     const media = new MediaRecorder(stream, { mimeType: mimeType });
-    //set the MediaRecorder instance to the mediaRecorder ref
     mediaRecorder.current = media;
-    //invokes the start method to start the recording process
     mediaRecorder.current.start();
     let localAudioChunks: Blob[] = [];
     mediaRecorder.current.ondataavailable = (event) => {
@@ -67,12 +64,9 @@ const Recorder = ({}) => {
     if (pending) return;
 
     setRecordingStatus("inactive");
-    //stops the recording instance
     mediaRecorder.current.stop();
     mediaRecorder.current.onstop = () => {
-      //creates a blob file from the audiochunks data
       const audioBlob = new Blob(audioChunks, { type: mimeType });
-      //creates a playable URL from the blob file.
       const audioUrl = URL.createObjectURL(audioBlob);
       setAudio(audioUrl);
       uploadAudio(audioBlob);
