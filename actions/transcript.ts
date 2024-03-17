@@ -59,7 +59,8 @@ async function transcript(prevState: any, formData: FormData) {
     {
       role: "system",
       content:
-        "You are a helpful assistant. You will answer questions and reply I cannot answer that if you dont know the answer.",
+        "You are a helpful assistant. You will answer questions and reply I do not know the answer that if you dont" +
+        " know the answer.",
     },
     { role: "user", content: result.text },
   ];
